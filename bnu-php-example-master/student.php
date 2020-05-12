@@ -16,7 +16,7 @@
        //delete a record
        $sql = "DELETE FROM student WHERE studentid = $student_id";
 
-       echo "student id  = ". $student_id . "<br/>";
+       $result = mysqli_query($conn, $sql);
 
      }
    }
