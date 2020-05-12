@@ -13,7 +13,7 @@
    {
      foreach($_POST['delete'] as $student_id => $value)
      {
-       $sql = "DELETE FROM student"
+       $sql = "DELETE FROM student WHERE studentid = $student_id";
 
 
        //sql
