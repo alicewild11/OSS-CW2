@@ -16,16 +16,16 @@
 
          // build an sql statment to update the student details
          $sql = "INSERT INTO student (studentid, firstname, lastname, house, town, county, country postcode)";
-         $sql = $sql . " values ('$_POST[txtstudentid]', '$_POST[txtfirstname]', '$_POST[txtlastname]', '$_POST[txthouse]', 
+         $sql = $sql . " values ('$_POST[txtstudentid]', '$_POST[txtfirstname]', '$_POST[txtlastname]', '$_POST[txthouse]',
          '$_POST[txttown]', '$_POST[txtcounty]', '$_POST[txtcountry]', '$_POST[txtpostcode]', '$_POST[txtpassword]')";
-
 
          $result = mysqli_query($conn,$sql);
 
          $data['content'] = "<p>Your details have been inserted</p>";
 
       }
-      else {
+      else
+      {
           // using <<<EOD notation to allow building of a multi-line string
           $data['content'] = <<<EOD
 
