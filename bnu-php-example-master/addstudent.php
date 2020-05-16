@@ -15,11 +15,12 @@
       if (isset($_POST['submit'])) {
 
          // build an sql statment to update the student details
-         $sql = "INSERT INTO student (studentid, firstname, lastname, house, town, county, country postcode)";
-         $sql = $sql . " values ('$_POST[txtstudentid]', '$_POST[txtfirstname]', '$_POST[txtlastname]', '$_POST[txthouse]',
-         '$_POST[txttown]', '$_POST[txtcounty]', '$_POST[txtcountry]', '$_POST[txtpostcode]', '$_POST[txtpassword]')";
+         $sql = "INSERT INTO student (studentid, password, dob, firstname, lastname, house, town, county, country, postcode) VALUES ('$_POST[txtstudentid]'  , '$_POST[txtpassword]', '$_POST[txtdob]', '$_POST[txtfirstname]', '$_POST[txtlastname]', '$_POST[txthouse]','$_POST[txttown]', '$_POST[txtcounty]', '$_POST[txtcountry]', '$_POST[txtpostcode]');";
+
 
          $result = mysqli_query($conn,$sql);
+
+         echo $sql;
 
          $data['content'] = "<p>Your details have been inserted</p>";
 
@@ -33,6 +34,10 @@
           <form name="frmaddstudent" action="" method="post">
           Student ID :
           <input name="txtstudentid" type="text" /><br/>
+          Password :
+          <input name="txtpassword" type="text" /><br/>
+          Date of Birth :
+          <input name="txtdob" type="text"/><br/>
           First Name :
           <input name="txtfirstname" type="text"  /><br/>
           Surname :
@@ -47,8 +52,6 @@
           <input name="txtcountry" type="text"   /><br/>
           Postcode :
           <input name="txtpostcode" type="text" /><br/>
-          Password :
-          <input name="txtpassword" type="text"/><br/>
           <input type="submit" value="Save" name="submit"/>
           </form>
 
