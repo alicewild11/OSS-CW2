@@ -16,9 +16,11 @@
      if (isset($_POST['submit']))
      {
 
-        // build an sql statment to update the student details
-        $sql = "INSERT INTO student (studentid, password, dob, firstname, lastname, house, town, county, country, postcode) VALUES ('" . $_POST['txtstudentid'] . " ', '" . $_POST['txtpassword'] . " ', '" . $_POST['txtdob'] . " ', '" . $_POST['txtfirstname'] . " ',
-        '" . $_POST['txtlastname'] . " ', '" . $_POST['txthouse'] . " ','" . $_POST['txttown'] . " ', '" . $_POST['txtcounty'] . " ', '" . $_POST['txtcountry'] . " ', '" . $_POST['txtpostcode'] . " ');";
+        // build an sql statment to insert the student details into the table
+        $sql = "INSERT INTO student (studentid, password, dob, firstname, lastname, house, town, county, country, postcode)
+        VALUES ('" . $_POST['txtstudentid'] . " ', '" . $_POST['txtpassword'] . " ', '" . $_POST['txtdob'] . " ',
+          '" . $_POST['txtfirstname'] . " ','" . $_POST['txtlastname'] . " ', '" . $_POST['txthouse'] . " ','" . $_POST['txttown'] . " ',
+          '" . $_POST['txtcounty'] . " ', '" . $_POST['txtcountry'] . " ', '" . $_POST['txtpostcode'] . " ');";
         $result = mysqli_query($conn,$sql);
 
         echo $sql;
@@ -39,7 +41,7 @@
           Password :
           <input name="txtpassword" type="text" /><br/>
           Date of Birth :
-          <input name="txtdob" type="text"/><br/>
+          <input name="txtdob" type="date"/><br/>
           First Name :
           <input name="txtfirstname" type="text"  /><br/>
           Surname :
