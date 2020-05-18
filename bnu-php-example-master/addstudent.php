@@ -6,27 +6,29 @@
 
 
    // check logged in
-   if (isset($_SESSION['id'])) {
+   if (isset($_SESSION['id']))
+   {
 
-      echo template("templates/partials/header.php");
-      echo template("templates/partials/nav.php");
+     echo template("templates/partials/header.php");
+     echo template("templates/partials/nav.php");
 
-      // if the form has been submitted
-      if (isset($_POST['submit'])) {
+     // if the form has been submitted
+     if (isset($_POST['submit']))
+     {
 
-         // build an sql statment to update the student details
-         $sql = "INSERT INTO student (studentid, password, dob, firstname, lastname, house, town, county, country, postcode) VALUES ('$_POST[txtstudentid]'  , '$_POST[txtpassword]', '$_POST[txtdob]', '$_POST[txtfirstname]', '$_POST[txtlastname]', '$_POST[txthouse]','$_POST[txttown]', '$_POST[txtcounty]', '$_POST[txtcountry]', '$_POST[txtpostcode]');";
+        // build an sql statment to update the student details
+        $sql = "INSERT INTO student (studentid, password, dob, firstname, lastname, house, town, county, country, postcode) VALUES ('" . $_POST['txtstudentid'] . " ', '" . $_POST['txtpassword'] . " ', '" . $_POST['txtdob'] . " ', '" . $_POST['txtfirstname'] . " ',
+        '" . $_POST['txtlastname'] . " ', '" . $_POST['txthouse'] . " ','" . $_POST['txttown'] . " ', '" . $_POST['txtcounty'] . " ', '" . $_POST['txtcountry'] . " ', '" . $_POST['txtpostcode'] . " ');";
+        $result = mysqli_query($conn,$sql);
 
+        echo $sql;
 
-         $result = mysqli_query($conn,$sql);
+        $data['content'] = "<p>Your details have been updated</p>";
 
-         echo $sql;
+     }
+     else
+     {
 
-         $data['content'] = "<p>Your details have been inserted</p>";
-
-      }
-      else
-      {
           // using <<<EOD notation to allow building of a multi-line string
           $data['content'] = <<<EOD
 
@@ -57,11 +59,12 @@
 
           EOD;
 
+          // render the template
+          echo template("templates/default.php", $data);
+
       }
 
-      // render the template
-      echo template("templates/default.php", $data);
-   }
+    }
    else
    {
       header("Location: index.php");
