@@ -18,7 +18,7 @@
 
         // build an sql statment to insert the student details into the table
         $stmt = $conn->prepare("INSERT INTO student (studentid, password, dob, firstname, lastname, house, town, county, country, postcode) VALUES (?,?,?,?,?,?,?,?,?,?)");
-        //ttach variables to the dummy values in the prepared template
+        //attach variables to the dummy values in the prepared template
         //s specifies that they will be a string value
         $stmt->bind_param("ssssssssss", $_POST['txtstudentid'], $_POST['txtpassword'], $_POST['txtdob'], $_POST['txtfirstname'],
         $_POST['txtlastname'], $_POST['txthouse'], $_POST['txttown'], $_POST['txtcounty'],$_POST['txtcountry'], $_POST['txtpostcode']);
@@ -26,8 +26,8 @@
         $stmt->execute();
         $stmt->close();
 
-        $data['content'] = "<p>Your details have been updated</p>";
 
+        $data['content'] = "<p>Your details have been updated</p>";
 
      }
      else
@@ -35,32 +35,32 @@
 
           // using <<<EOD notation to allow building of a multi-line string
           $data['content'] = <<<EOD
-
+          <div>
           <h2>Add Student</h2>
           <form name="frmaddstudent" action="" method="post">
-          Student ID :
+          <p>Student ID :</p>
           <input name="txtstudentid" type="text" /><br/>
-          Password :
+          <p>Password :</p>
           <input name="txtpassword" type="password" /><br/>
-          Date of Birth :
+          <p>Date of Birth :</p>
           <input name="txtdob" type="date"/><br/>
-          First Name :
+          <p>First Name :</p>
           <input name="txtfirstname" type="text"  /><br/>
-          Surname :
+          <p>Surname :</p>
           <input name="txtlastname" type="text"   /><br/>
-          Number and Street :
+          <p>Number and Street :</p>
           <input name="txthouse" type="text" /><br/>
-          Town :
+          <p>Town :</p>
           <input name="txttown" type="text"   /><br/>
-          County :
+          <p>County :</p>
           <input name="txtcounty" type="text" /><br/>
-          Country :
+          <p>Country :</p>
           <input name="txtcountry" type="text"   /><br/>
-          Postcode :
+          <p>Postcode :</p>
           <input name="txtpostcode" type="text" /><br/>
           <input type="submit" value="Save" name="submit"/>
           </form>
-
+          </div>
           EOD;
 
           // render the template
