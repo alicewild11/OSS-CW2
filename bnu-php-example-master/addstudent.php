@@ -39,7 +39,7 @@
           Student ID :
           <input name="txtstudentid" type="text" /><br/>
           Password :
-          <input name="txtpassword" type="text" /><br/>
+          <input name="txtpassword" type="password" /><br/>
           Date of Birth :
           <input name="txtdob" type="date"/><br/>
           First Name :
@@ -73,5 +73,6 @@
    }
 
    echo template("templates/partials/footer.php");
+   
 
 ?>
