@@ -13,8 +13,16 @@ if (isset($_SESSION['id'])) {
 
    // If a module has been selected
    if (isset($_POST['selmodule'])) {
-      $sql = "insert into studentmodules values ('" .  $_SESSION['id'] . "','" . $_POST['selmodule'] . "');";
-      $result = mysqli_query($conn, $sql);
+
+     // build an sql statment to insert the student details into the table
+     $stmt = $conn->prepare("INSERT INTO studentmodules (studentid, modulecode) VALUES (?,?)");
+     //attach variables to the dummy values in the prepared template
+     //s specifies that they will be a string value
+     $stmt->bind_param("ss", $_POST['studentid'], $_POST['modulecode']);
+     //runs the code
+     $stmt->execute();
+     $stmt->close();
+
       $data['content'] .= "<p>The module " . $_POST['selmodule'] . " has been assigned to you</p>";
    }
    else  // If a module has not been selected
@@ -25,7 +33,7 @@ if (isset($_SESSION['id'])) {
      $result = mysqli_query($conn, $sql);
 
      $data['content'] .= "<form name='frmassignmodule' action='' method='post' >";
-     $data['content'] .= "Select a module to assign<br/>";
+     $data['content'] .= "<h2>Select a Module to Assign</h2><br/>";
      $data['content'] .= "<select name='selmodule' >";
      // Display the module name sin a drop down selection box
      while($row = mysqli_fetch_array($result)) {
