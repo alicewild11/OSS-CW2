@@ -17,15 +17,17 @@
      {
 
         // build an sql statment to insert the student details into the table
-        $sql = "INSERT INTO student (studentid, password, dob, firstname, lastname, house, town, county, country, postcode)
-        VALUES ('" . $_POST['txtstudentid'] . " ', '" . $_POST['txtpassword'] . " ', '" . $_POST['txtdob'] . " ',
-          '" . $_POST['txtfirstname'] . " ','" . $_POST['txtlastname'] . " ', '" . $_POST['txthouse'] . " ','" . $_POST['txttown'] . " ',
-          '" . $_POST['txtcounty'] . " ', '" . $_POST['txtcountry'] . " ', '" . $_POST['txtpostcode'] . " ');";
-        $result = mysqli_query($conn,$sql);
-
-        echo $sql;
+        $stmt = $conn->prepare("INSERT INTO student (studentid, password, dob, firstname, lastname, house, town, county, country, postcode) VALUES (?,?,?,?,?,?,?,?,?,?)");
+        //ttach variables to the dummy values in the prepared template
+        //s specifies that they will be a string value
+        $stmt->bind_param("ssssssssss", $_POST['txtstudentid'], $_POST['txtpassword'], $_POST['txtdob'], $_POST['txtfirstname'],
+        $_POST['txtlastname'], $_POST['txthouse'], $_POST['txttown'], $_POST['txtcounty'],$_POST['txtcountry'], $_POST['txtpostcode']);
+        //runs the code
+        $stmt->execute();
+        $stmt->close();
 
         $data['content'] = "<p>Your details have been updated</p>";
+
 
      }
      else
@@ -73,6 +75,6 @@
    }
 
    echo template("templates/partials/footer.php");
-   
+
 
 ?>
